@@ -1,0 +1,5 @@
+Channel Proof App - Release Notes
+
+Uses:
+android-support-v4    : -
+ANT Channel Lib       : 1.0.7
