@@ -35,10 +35,17 @@ public class HeartRateActivity extends Activity {
 	RelativeLayout rootView;
 
 	private static final long GET_DATA_INTERVAL = 3000;
-	int images[] = { R.drawable.horror, R.drawable.schock, R.drawable.creepy2,
-			R.drawable.creepy3, R.drawable.dis, R.drawable.disgusting,
-			R.drawable.howto, R.drawable.images, R.drawable.imagesca,
-			R.drawable.imagescalm, R.drawable.imagesdis, R.drawable.imagestwo };
+	int images[] = { R.drawable.c1, R.drawable.d1, R.drawable.c2,
+			R.drawable.d2, R.drawable.e, R.drawable.c3, R.drawable.d3,
+			R.drawable.c4, R.drawable.d4, R.drawable.c5, R.drawable.d5,
+			R.drawable.c6, R.drawable.d6, R.drawable.c7, R.drawable.d7, 
+			R.drawable.c8, R.drawable.d8, R.drawable.c9, R.drawable.d9,
+			R.drawable.c10, R.drawable.d10, R.drawable.c11, R.drawable.d11,
+			R.drawable.c12, R.drawable.d12,R.drawable.c13, R.drawable.d13,
+			R.drawable.c14, R.drawable.d14,R.drawable.c15, R.drawable.d15,
+			R.drawable.c16, R.drawable.d16,R.drawable.c17, R.drawable.d17,
+			R.drawable.c18, R.drawable.d18,R.drawable.c19, R.drawable.d19,
+			R.drawable.c20, R.drawable.d20, R.drawable.d21};
 	int index = 0;
 	Handler hand = new Handler();
 	
