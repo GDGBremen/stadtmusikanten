@@ -1,7 +1,5 @@
 package de.gdgbremen.stadtmusikatenapp;
 
-import java.math.BigDecimal;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,19 +9,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dsi.ant.plugins.AntPluginMsgDefines;
 import com.dsi.ant.plugins.AntPluginPcc.IDeviceStateChangeReceiver;
 import com.dsi.ant.plugins.AntPluginPcc.IPluginAccessResultReceiver;
-import com.dsi.ant.plugins.antplus.legacycommon.AntPlusLegacyCommonPcc.ICumulativeOperatingTimeReceiver;
-import com.dsi.ant.plugins.antplus.legacycommon.AntPlusLegacyCommonPcc.IManufacturerAndSerialReceiver;
-import com.dsi.ant.plugins.antplus.legacycommon.AntPlusLegacyCommonPcc.IVersionAndModelReceiver;
 import com.dsi.ant.plugins.antplus.pcc.AntPlusHeartRatePcc;
 import com.dsi.ant.plugins.antplus.pcc.AntPlusHeartRatePcc.IHeartRateDataReceiver;
-import com.dsi.ant.plugins.antplus.pcc.AntPlusHeartRatePcc.IHeartRateDataTimestampReceiver;
-import com.dsi.ant.plugins.antplus.pcc.AntPlusHeartRatePcc.IPage4AddtDataReceiver;
 
 public class HeartRateActivity extends Activity{
 
@@ -31,23 +25,9 @@ public class HeartRateActivity extends Activity{
     
     TextView tv_status;
     
-    TextView tv_msgsRcvdCount;
-    
     TextView tv_computedHeartRate;
-    TextView tv_heartBeatCounter;
-    TextView tv_timestampOfLastEvent;
     
-    TextView tv_manufacturerSpecificByte;
-    TextView tv_previousToLastHeartBeatEventTimeStamp;
-    
-    TextView tv_cumulativeOperatingTime;
-    
-    TextView tv_manufacturerID;
-    TextView tv_serialNumber;
-    
-    TextView tv_hardwareVersion;
-    TextView tv_softwareVersion;
-    TextView tv_modelNumber;
+    RelativeLayout rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,23 +37,10 @@ public class HeartRateActivity extends Activity{
         
         tv_status = (TextView)findViewById(R.id.textView_Status);
         
-        tv_msgsRcvdCount = (TextView)findViewById(R.id.textView_MsgsRcvdCount);
-        
         tv_computedHeartRate = (TextView)findViewById(R.id.textView_ComputedHeartRate);
-        tv_heartBeatCounter = (TextView)findViewById(R.id.textView_HeartBeatCounter);
-        tv_timestampOfLastEvent = (TextView)findViewById(R.id.textView_TimestampOfLastEvent);
-        
-        tv_manufacturerSpecificByte = (TextView)findViewById(R.id.textView_ManufacturerSpecificByte);
-        tv_previousToLastHeartBeatEventTimeStamp = (TextView)findViewById(R.id.textView_PreviousToLastEventTime);
-        
-        tv_cumulativeOperatingTime = (TextView)findViewById(R.id.textView_CumulativeOperatingTime);
-        
-        tv_manufacturerID = (TextView)findViewById(R.id.textView_ManufacturerID);
-        tv_serialNumber = (TextView)findViewById(R.id.textView_SerialNumber);
-        
-        tv_hardwareVersion = (TextView)findViewById(R.id.textView_HardwareVersion);
-        tv_softwareVersion = (TextView)findViewById(R.id.textView_SoftwareVersion);
-        tv_modelNumber = (TextView)findViewById(R.id.textView_ModelNumber);
+
+        rootView = (RelativeLayout)findViewById(R.id.heart_rate_root);
+        rootView.setBackgroundResource(R.drawable.horror);
         
         resetPcc();
     }
@@ -94,24 +61,7 @@ public class HeartRateActivity extends Activity{
         //Reset the text display
         tv_status.setText("Connecting...");
         
-        tv_msgsRcvdCount.setText("---");
-        
-        tv_computedHeartRate.setText("---");
-        tv_heartBeatCounter.setText("---");
-        tv_timestampOfLastEvent.setText("---");
-        
-        tv_manufacturerSpecificByte.setText("---");
-        tv_previousToLastHeartBeatEventTimeStamp.setText("---");
-        
-        tv_cumulativeOperatingTime.setText("---");
-        
-        tv_manufacturerID.setText("---");
-        tv_serialNumber.setText("---");
-        
-        tv_hardwareVersion.setText("---");
-        tv_softwareVersion.setText("---");
-        tv_modelNumber.setText("---");
-        
+        tv_computedHeartRate.setText("---");        
         
         //Make the access request
         //AntPlusHeartRatePcc.requestAccess(this, 0,
@@ -194,113 +144,15 @@ public class HeartRateActivity extends Activity{
                                                     @Override
                                                     public void run()
                                                     {
-                                                        tv_msgsRcvdCount.setText(String.valueOf(currentMessageCount));
+//                                                        tv_msgsRcvdCount.setText(String.valueOf(currentMessageCount));
                                                         
                                                         tv_computedHeartRate.setText(String.valueOf(computedHeartRate));
-                                                        tv_heartBeatCounter.setText(String.valueOf(heartBeatCounter));
+//                                                        tv_heartBeatCounter.setText(String.valueOf(heartBeatCounter));
                                                     }
                                                 });
                                     }
                                 });
                         
-                        hrPcc.subscribeHeartRateDataTimestampEvent(new IHeartRateDataTimestampReceiver()
-                                {
-                                    @Override
-                                    public void onNewHeartRateDataTimestamp(final int currentMessageCount, final BigDecimal timestampOfLastEvent)
-                                    {
-                                        runOnUiThread(new Runnable()
-                                                {                                            
-                                                    @Override
-                                                    public void run()
-                                                    {
-                                                        tv_msgsRcvdCount.setText(String.valueOf(currentMessageCount));
-                                                        
-                                                        tv_timestampOfLastEvent.setText(String.valueOf(timestampOfLastEvent));
-                                                    }
-                                                });
-                                    }
-                                });
-                        
-                        hrPcc.subscribePage4AddtDataEvent(new IPage4AddtDataReceiver()
-                                {
-                                    
-                                    @Override
-                                    public void onNewPage4AddtData(final int currentMessageCount,
-                                            final int manufacturerSpecificByte,
-                                            final BigDecimal timestampOfPreviousToLastHeartBeatEvent)
-                                    {
-                                        runOnUiThread(new Runnable()
-                                                {                                            
-                                                    @Override
-                                                    public void run()
-                                                    {
-                                                        tv_msgsRcvdCount.setText(String.valueOf(currentMessageCount));
-                                                        
-                                                        tv_manufacturerSpecificByte.setText(String.format("0x%02X", manufacturerSpecificByte));
-                                                        tv_previousToLastHeartBeatEventTimeStamp.setText(String.valueOf(timestampOfPreviousToLastHeartBeatEvent));
-                                                    }
-                                                });
-                                    }
-                                });
-                        
-                        hrPcc.subscribeCumulativeOperatingTimeEvent(new ICumulativeOperatingTimeReceiver()
-                                {
-                                    @Override
-                                    public void onNewCumulativeOperatingTime(final int currentMessageCount, final long cumulativeOperatingTime)
-                                    {
-                                        runOnUiThread(new Runnable()
-                                                {                                            
-                                                    @Override
-                                                    public void run()
-                                                    {
-                                                        tv_msgsRcvdCount.setText(String.valueOf(currentMessageCount));
-                                                        
-                                                        tv_cumulativeOperatingTime.setText(String.valueOf(cumulativeOperatingTime));
-                                                    }
-                                                });
-                                    }
-                                });
-                        
-                        hrPcc.subscribeManufacturerAndSerialEvent(new IManufacturerAndSerialReceiver()
-                                {
-                                    @Override
-                                    public void onNewManufacturerAndSerial(final int currentMessageCount, final int manufacturerID,
-                                            final int serialNumber)
-                                    {
-                                        runOnUiThread(new Runnable()
-                                                {                                            
-                                                    @Override
-                                                    public void run()
-                                                    {
-                                                        tv_msgsRcvdCount.setText(String.valueOf(currentMessageCount));
-                                                        
-                                                        tv_manufacturerID.setText(String.valueOf(manufacturerID));
-                                                        tv_serialNumber.setText(String.valueOf(serialNumber));
-                                                    }
-                                                });
-                                    }
-                                });
-                        
-                        hrPcc.subscribeVersionAndModelEvent(new IVersionAndModelReceiver()
-                                {
-                                    @Override
-                                    public void onNewVersionAndModel(final int currentMessageCount, final int hardwareVersion,
-                                            final int softwareVersion, final int modelNumber)
-                                    {
-                                        runOnUiThread(new Runnable()
-                                                {                                            
-                                                    @Override
-                                                    public void run()
-                                                    {
-                                                        tv_msgsRcvdCount.setText(String.valueOf(currentMessageCount));
-                                                        
-                                                        tv_hardwareVersion.setText(String.valueOf(hardwareVersion));
-                                                        tv_softwareVersion.setText(String.valueOf(softwareVersion));
-                                                        tv_modelNumber.setText(String.valueOf(modelNumber));
-                                                    }
-                                                });
-                                    }
-                                });
                     }
                 }, 
                 //Receives state changes and shows it on the status display line

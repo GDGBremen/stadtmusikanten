@@ -10,15 +10,15 @@ All rights reserved.
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_HeartRate" >
+    tools:context=".Activity_HeartRate" 
+    android:id="@+id/heart_rate_root">
 
     <LinearLayout
         android:id="@+id/linearLayout_TitleAndStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
 	     <TextView
 	         android:id="@+id/textView_Status"
@@ -26,11 +26,11 @@ All rights reserved.
 	         android:layout_height="wrap_content"
 	         android:text="[status]"
 	         android:textAppearance="?android:attr/textAppearanceMedium"
-	         android:textStyle="italic" />
+	         android:textStyle="italic"
+	         android:textColor="@android:color/white"
+	          />
 
     </LinearLayout>
-
-    
     
     <ScrollView
         android:id="@+id/scrollView1"
@@ -45,42 +45,13 @@ All rights reserved.
             android:orientation="vertical" >
             
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#EBEBEB"
                 android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
+                android:paddingTop="3dp" 
+                android:paddingRight="3dp"
+		        android:background="@drawable/big_red_heart">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:text="MsgsRcvdCount:" />
-                
-                <TextView
-                    android:id="@+id/textView_MsgsRcvdCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D7D7D7"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:textStyle="bold"
-                    android:text="ComputedHeartRate:" />
                 
                 <TextView
                     android:id="@+id/textView_ComputedHeartRate"
@@ -88,238 +59,12 @@ All rights reserved.
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:textStyle="bold"
+                    android:textColor="@android:color/white"
                     android:text="---" />
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#EBEBEB"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="HeartBeatCounter:" />
-                
-                <TextView
-                    android:id="@+id/textView_HeartBeatCounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D7D7D7"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:text="TimestampOfLastEvent:" />
-                
-                <TextView
-                    android:id="@+id/textView_TimestampOfLastEvent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#EBEBEB"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="ManufacturerSpecificByte:" />
-                
-                <TextView
-                    android:id="@+id/textView_ManufacturerSpecificByte"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D7D7D7"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:text="PreviousToLastEventTime:" />
-                
-                <TextView
-                    android:id="@+id/textView_PreviousToLastEventTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#EBEBEB"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="CumulativeOperatingTime:" />
-                
-                <TextView
-                    android:id="@+id/textView_CumulativeOperatingTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D7D7D7"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:text="ManufacturerID:" />
-                
-                <TextView
-                    android:id="@+id/textView_ManufacturerID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#EBEBEB"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="SerialNumber:" />
-                
-                <TextView
-                    android:id="@+id/textView_SerialNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D7D7D7"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:text="HardwareVersion:" />
-                
-                <TextView
-                    android:id="@+id/textView_HardwareVersion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#EBEBEB"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="SoftwareVersion:" />
-                
-                <TextView
-                    android:id="@+id/textView_SoftwareVersion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D7D7D7"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:text="ModelNumber:" />
-                
-                <TextView
-                    android:id="@+id/textView_ModelNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="---" />
-
-            </RelativeLayout>
-
+            
         </LinearLayout>
-
-        
-        
-        
-
     </ScrollView>
-
-    
-
 </RelativeLayout>
