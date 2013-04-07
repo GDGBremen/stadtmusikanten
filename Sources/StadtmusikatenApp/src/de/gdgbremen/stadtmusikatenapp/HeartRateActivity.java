@@ -48,6 +48,8 @@ public class HeartRateActivity extends Activity {
 	
 	Runnable run = null;
 
+	private RelativeLayout big_red_heart1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,6 +60,8 @@ public class HeartRateActivity extends Activity {
 		tv_computedHeartRate = (TextView) findViewById(R.id.textView_ComputedHeartRate);
 
 		tv_computedHeartRate_p2 = (TextView) findViewById(R.id.textView_ComputedHeartRate2);
+		
+		big_red_heart1 = (RelativeLayout) findViewById(R.id.big_red_heart1);
 
 		rootView = (RelativeLayout) findViewById(R.id.heart_rate_root);
 		rootView.setBackgroundColor(Color.GREEN);
@@ -213,6 +217,15 @@ public class HeartRateActivity extends Activity {
 
 										tv_computedHeartRate.setText(String
 												.valueOf(computedHeartRate));
+										big_red_heart1.setScaleX(0.01f);
+										big_red_heart1.setScaleY(0.01f);
+										big_red_heart1.setAlpha(0);
+										big_red_heart1.animate()
+											.scaleX(1)
+											.scaleY(1)
+											.alpha(1)
+											.setDuration(100)
+											.start();
 										// tv_heartBeatCounter.setText(String.valueOf(heartBeatCounter));
 									}
 								});
