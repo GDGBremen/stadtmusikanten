@@ -34,33 +34,45 @@ All rights reserved.
     
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout_TitleAndStatus">
         
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="vertical" >
             
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp" 
-                android:paddingRight="3dp"
-		        android:background="@drawable/big_red_heart">
+                android:layout_width="150px"
+                android:layout_height="150px"
+                android:background="@drawable/big_red_heart">
 
-                
                 <TextView
                     android:id="@+id/textView_ComputedHeartRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
-                    android:text="---" />
+                    android:text="P1" />
+
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:layout_width="150px"
+                android:layout_height="150px"
+                android:background="@drawable/big_red_heart">
+
+                <TextView
+                    android:id="@+id/textView_ComputedHeartRate2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:text="P2" />
 
             </RelativeLayout>
 
